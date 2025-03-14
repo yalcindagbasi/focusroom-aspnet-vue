@@ -1,6 +1,7 @@
 ﻿using FocusRoom.Application.Interfaces;
 using FocusRoom.Domain.Entities;
 using FocusRoom.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
