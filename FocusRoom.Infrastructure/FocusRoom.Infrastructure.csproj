@@ -21,7 +21,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\FocusRoom.Application\FocusRoom.Application.csproj" />
 		<ProjectReference Include="..\FocusRoom.Domain\FocusRoom.Domain.csproj" />
-		<ProjectReference Include="..\FocusRoom.Web\FocusRoom.Web.csproj" />
 	</ItemGroup>
 
 </Project>
