@@ -1,19 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using FocusRoom.Domain.Entities;
+﻿using FocusRoom.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-
-namespace FocusRoom.Infrastructure.Persistence;
-
-public class FocusRoomDbContext : DbContext
+namespace FocusRoom.Infrastructure.Persistence
 {
-    public FocusRoomDbContext(DbContextOptions<FocusRoomDbContext> options) : base(options) { }
+    public class FocusRoomDbContext : DbContext
+    {
+        public FocusRoomDbContext(DbContextOptions<FocusRoomDbContext> options) : base(options) { }
 
-    public DbSet<User> Users { get; set; }
-    public DbSet<Session> Sessions { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Session> Sessions { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Session>()
+                .HasKey(s => s.Id);
+
+            modelBuilder.Entity<Session>()
+                .HasOne(s => s.User)
+                .WithMany(u => u.Sessions)
+                .HasForeignKey(s => s.UserId);
+        }
+    }
 }
